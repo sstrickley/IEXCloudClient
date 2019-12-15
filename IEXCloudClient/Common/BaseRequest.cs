@@ -8,23 +8,26 @@ using System.Threading.Tasks;
 
 namespace IEXCloudClient.Common
 {
-    public abstract class BaseRequest<TResponse>
+    public abstract class BaseRequest<TResponse> : IRequest<TResponse>
     {
-        private readonly string baseUrl = "https://cloud.iexapis.com/v1/";
         private string endpoint;
 
         private HttpClient client;
 
         protected Dictionary<string, string> Parameters { get; private set; }
 
-        public BaseRequest()
+        public BaseRequest(string baseUrl, string token)
         {
+            var baseUri = new Uri(baseUrl);
+
             client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
+            client.BaseAddress = baseUri;
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             Parameters = new Dictionary<string, string>();
+            Parameters.Add("token", token);
         }
 
         protected void SetEndpoint(string ept)
@@ -40,8 +43,6 @@ namespace IEXCloudClient.Common
         public async Task<TResponse> SendRequestAsync()
         {
             AddParameters();
-
-            await RequestManager.I.Throttle();
 
             var response = await client.GetAsync(endpoint);
 

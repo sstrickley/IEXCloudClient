@@ -1,7 +1,7 @@
-﻿using IEXClient.Chart;
-using IEXClient.Dividends;
-using IEXClient.KeyStats;
-using IEXClient.Quote;
+﻿using IEXCloudClient.Chart;
+using IEXCloudClient.Dividends;
+using IEXCloudClient.KeyStats;
+using IEXCloudClient.Quote;
 using System.Collections.Generic;
 
 namespace IEXCloudClient.Common

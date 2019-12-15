@@ -4,13 +4,11 @@ using System.Collections.Generic;
 
 namespace IEXCloudClient.Chart
 {
-    public class ChartRequest : BaseRequest<List<ChartResponse>>
+    internal class ChartRequest : BaseRequest<List<ChartResponse>>
     {
-        public ChartRequest(string symbol, Range range, string token) : base()
+        public ChartRequest(string symbol, Range range, string baseUrl, string token) : base(baseUrl, token)
         {
             SetEndpoint("stock", symbol, "chart", range.GetDescription());
-            Parameters.Add("token", token);
-
         }
     }
 }
