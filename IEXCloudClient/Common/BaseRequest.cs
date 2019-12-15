@@ -10,7 +10,7 @@ namespace IEXCloudClient.Common
 {
     public abstract class BaseRequest<TResponse>
     {
-        private readonly string baseUrl = "https://api.iextrading.com/1.0/";
+        private readonly string baseUrl = "https://cloud.iexapis.com/v1/";
         private string endpoint;
 
         private HttpClient client;
@@ -59,7 +59,7 @@ namespace IEXCloudClient.Common
                 return;
 
             var queryString = String.Join("&", Parameters.Select(a => $"{a.Key}={a.Value}"));
-            endpoint += "?" + queryString;
+            endpoint = string.Format("{0}?{1}", endpoint, queryString);
         }
 
         private async Task<TResponse> DeserializeResponse(HttpResponseMessage response)
