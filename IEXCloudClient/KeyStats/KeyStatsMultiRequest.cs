@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IEXCloudClient.KeyStats
 {
-    public class KeyStatsMultiRequest : BaseRequest<Dictionary<string, RequestTypes>>
+    internal class KeyStatsMultiRequest : BaseRequest<Dictionary<string, RequestTypes>>
     {
         public KeyStatsMultiRequest(IEnumerable<string> symbols, string baseUrl, string token) : base(baseUrl, token)
         {

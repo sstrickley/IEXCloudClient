@@ -1,4 +1,4 @@
-﻿using Common.Converters;
+﻿using IEXCloudClient.Utility;
 using System;
 
 namespace IEXCloudClient.Dividends

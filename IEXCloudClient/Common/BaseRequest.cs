@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IEXCloudClient.Common
 {
-    public abstract class BaseRequest<TResponse> : IRequest<TResponse>
+    internal abstract class BaseRequest<TResponse> : IRequest<TResponse>
     {
         private string endpoint;
 

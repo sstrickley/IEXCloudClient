@@ -1,10 +1,10 @@
-﻿using Common.Extensions;
+﻿using IEXCloudClient.Utility;
 using IEXCloudClient.Common;
 using System.Collections.Generic;
 
 namespace IEXCloudClient.Dividends
 {
-    public class DividendMultiRequest : BaseRequest<Dictionary<string, RequestTypes>>
+    internal class DividendMultiRequest : BaseRequest<Dictionary<string, RequestTypes>>
     {
         public DividendMultiRequest(IEnumerable<string> symbols, Range range, string baseUrl, string token) : base(baseUrl, token)
         {

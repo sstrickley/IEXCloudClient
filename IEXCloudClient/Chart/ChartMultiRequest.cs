@@ -1,4 +1,4 @@
-﻿using Common.Extensions;
+﻿using IEXCloudClient.Utility;
 using IEXCloudClient.Common;
 using System.Collections.Generic;
 

@@ -1,6 +1,8 @@
 ﻿using IEXCloudClient.Chart;
+using IEXCloudClient.Collections;
 using IEXCloudClient.Common;
 using IEXCloudClient.Dividends;
+using IEXCloudClient.Indicator;
 using IEXCloudClient.KeyStats;
 using IEXCloudClient.Quote;
 using System.Collections.Generic;
@@ -17,5 +19,9 @@ namespace IEXCloudClient
         IRequest<Dictionary<string, RequestTypes>> GetKeyStatsMultiRequest(IEnumerable<string> symbols);
         IRequest<List<DividendResponse>> GetDividendRequest(string symbol, Range range);
         IRequest<Dictionary<string, RequestTypes>> GetDividendMultiRequest(IEnumerable<string> symbols, Range range);
+        IRequest<IndicatorResponse> GetIndicatorRequest(string symbol, IndicatorEnum indicator, Range range);
+        IRequest<List<QuoteResponse>> GetCollectionRequest(CollectionTypeEnum type, string collectionName);
+        IRequest<List<NamedItemResponse>> GetSectorsRequest();
+        IRequest<List<NamedItemResponse>> GetTagsRequest();
     }
 }

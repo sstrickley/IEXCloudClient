@@ -2,7 +2,7 @@
 
 namespace IEXCloudClient.KeyStats
 {
-    public class KeyStatsRequest : BaseRequest<KeyStatsResponse>
+    internal class KeyStatsRequest : BaseRequest<KeyStatsResponse>
     {
         public KeyStatsRequest(string symbol, string baseUrl, string token) : base(baseUrl, token)
         {
