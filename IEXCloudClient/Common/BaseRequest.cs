@@ -44,6 +44,8 @@ namespace IEXCloudClient.Common
         {
             AddParameters();
 
+            await RequestManager.I.ThrottleAsync();
+
             var response = await client.GetAsync(endpoint);
 
             if (response.IsSuccessStatusCode)

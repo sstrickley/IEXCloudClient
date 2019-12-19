@@ -13,24 +13,30 @@ namespace IEXCloudClient.Common
             get { return _instance.Value; }
         }
 
-        private readonly double REQUEST_PER_MINUTE_LIMIT = 1000;
-        private SemaphoreSlim semSlim = new SemaphoreSlim(1, 1);
+        private readonly double MS_PER_REQUEST = 10;
+        private readonly object _lock = new object();
         private DateTime _lastRequest;
 
         private RequestManager()
         { }
 
-        public async Task Throttle()
+        public async Task ThrottleAsync()
         {
-            var secPerReq = 60 / REQUEST_PER_MINUTE_LIMIT;
-            var secSinceLast = (double)(DateTime.Now - _lastRequest).Seconds;
+            await Task.Run(() => Throttle());
+        }
 
-            var diff = secPerReq - secSinceLast;
+        public void Throttle()
+        {
+            lock (_lock)
+            {
+                var msecSinceLast = (DateTime.Now - _lastRequest).TotalMilliseconds;
 
-            if (diff > 0)
-                await Task.Delay((int)diff);
+                if (msecSinceLast > MS_PER_REQUEST)
+                    Thread.Sleep((int)(MS_PER_REQUEST - msecSinceLast));
 
-            _lastRequest = DateTime.Now;
+                _lastRequest = DateTime.Now;
+            }
+
         }
     }
 }
