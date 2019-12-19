@@ -29,10 +29,10 @@ namespace IEXCloudClient.Common
         {
             lock (_lock)
             {
-                var msecSinceLast = (DateTime.Now - _lastRequest).TotalMilliseconds;
+                var msSinceLast = (DateTime.Now - _lastRequest).TotalMilliseconds;
 
-                if (msecSinceLast > MS_PER_REQUEST)
-                    Thread.Sleep((int)(MS_PER_REQUEST - msecSinceLast));
+                if (msSinceLast < MS_PER_REQUEST)
+                    Thread.Sleep((int)(MS_PER_REQUEST - msSinceLast));
 
                 _lastRequest = DateTime.Now;
             }
