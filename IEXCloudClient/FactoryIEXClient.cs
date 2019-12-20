@@ -1,4 +1,5 @@
-﻿using IEXCloudClient.Chart;
+﻿using IEXCloudClient.Account;
+using IEXCloudClient.Chart;
 using IEXCloudClient.Collections;
 using IEXCloudClient.Common;
 using IEXCloudClient.Dividends;
@@ -78,6 +79,11 @@ namespace IEXCloudClient
         public IRequest<List<NamedItemResponse>> GetTagsRequest()
         {
             return new TagRequest(_baseUrl, _token);
+        }
+
+        public IRequest<MetadataResponse> GetMetadataRequest()
+        {
+            return new MetadataRequest(_baseUrl, _token);
         }
     }
 }

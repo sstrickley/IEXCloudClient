@@ -1,4 +1,5 @@
-﻿using IEXCloudClient.Chart;
+﻿using IEXCloudClient.Account;
+using IEXCloudClient.Chart;
 using IEXCloudClient.Collections;
 using IEXCloudClient.Common;
 using IEXCloudClient.Dividends;
@@ -23,5 +24,6 @@ namespace IEXCloudClient
         IRequest<List<QuoteResponse>> GetCollectionRequest(CollectionTypeEnum type, string collectionName);
         IRequest<List<NamedItemResponse>> GetSectorsRequest();
         IRequest<List<NamedItemResponse>> GetTagsRequest();
+        IRequest<MetadataResponse> GetMetadataRequest();
     }
 }

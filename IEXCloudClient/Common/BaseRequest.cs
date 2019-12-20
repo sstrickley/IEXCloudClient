@@ -40,6 +40,11 @@ namespace IEXCloudClient.Common
             endpoint = string.Join("/", args);
         }
 
+        public void AddFilter(params string[] args)
+        {
+            Parameters.Add("filter", string.Join(",", args));
+        }
+
         public async Task<TResponse> SendRequestAsync()
         {
             AddParameters();
