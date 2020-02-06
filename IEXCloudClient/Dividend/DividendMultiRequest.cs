@@ -6,7 +6,7 @@ namespace IEXCloudClient.Dividends
 {
     internal class DividendMultiRequest : BaseRequest<Dictionary<string, RequestTypes>>
     {
-        public DividendMultiRequest(IEnumerable<string> symbols, Range range, string baseUrl, string token) : base(baseUrl, token)
+        public DividendMultiRequest(IEnumerable<string> symbols, DateRangeEnum range, string baseUrl, string token) : base(baseUrl, token)
         {
             SetEndpoint("stock", "market", "batch");
             Parameters.Add("symbols", string.Join(",", symbols));

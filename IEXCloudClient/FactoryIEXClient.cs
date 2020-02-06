@@ -2,6 +2,7 @@
 using IEXCloudClient.Chart;
 using IEXCloudClient.Collections;
 using IEXCloudClient.Common;
+using IEXCloudClient.Company;
 using IEXCloudClient.Dividends;
 using IEXCloudClient.Indicator;
 using IEXCloudClient.KeyStats;
@@ -31,14 +32,30 @@ namespace IEXCloudClient
             return new QuoteMultiRequest(symbol, _baseUrl, _token);
         }
 
-        public IRequest<List<ChartResponse>> GetChartRequest(string symbol, Range range)
+        public IRequest<List<ChartResponse>> GetChartRequest(string symbol, DateRangeEnum range)
         {
             return new ChartRequest(symbol, range, _baseUrl, _token);
         }
 
-        public IRequest<Dictionary<string, RequestTypes>> GetChartMultiRequest(IEnumerable<string> symbols, Range range)
+        public IRequest<Dictionary<string, RequestTypes>> GetChartMultiRequest(IEnumerable<string> symbols, DateRangeEnum range)
         {
             return new ChartMultiRequest(symbols, range, _baseUrl, _token);
+        }
+
+        public IRequest<List<ChartResponse>> GetCloseOnlyChartRequest(string symbol, DateRangeEnum range)
+        {
+            var req = new ChartRequest(symbol, range, _baseUrl, _token);
+            req.GetCloseOnly();
+
+            return req;
+        }
+
+        public IRequest<Dictionary<string, RequestTypes>> GetCloseOnlyChartMultiRequest(IEnumerable<string> symbols, DateRangeEnum range)
+        {
+            var req = new ChartMultiRequest(symbols, range, _baseUrl, _token);
+            req.GetCloseOnly();
+
+            return req;
         }
 
         public IRequest<KeyStatsResponse> GetKeyStatsRequest(string symbol)
@@ -51,17 +68,17 @@ namespace IEXCloudClient
             return new KeyStatsMultiRequest(symbols, _baseUrl, _token);
         }
 
-        public IRequest<List<DividendResponse>> GetDividendRequest(string symbol, Range range)
+        public IRequest<List<DividendResponse>> GetDividendRequest(string symbol, DateRangeEnum range)
         {
             return new DividendRequest(symbol, range, _baseUrl, _token);
         }
 
-        public IRequest<Dictionary<string, RequestTypes>> GetDividendMultiRequest(IEnumerable<string> symbols, Range range)
+        public IRequest<Dictionary<string, RequestTypes>> GetDividendMultiRequest(IEnumerable<string> symbols, DateRangeEnum range)
         {
             return new DividendMultiRequest(symbols, range, _baseUrl, _token);
         }
 
-        public IRequest<IndicatorResponse> GetIndicatorRequest(string symbol, IndicatorEnum indicator, Range range)
+        public IRequest<IndicatorResponse> GetIndicatorRequest(string symbol, IndicatorEnum indicator, DateRangeEnum range)
         {
             return new IndicatorRequest(symbol, indicator, range, _baseUrl, _token);
         }
@@ -84,6 +101,16 @@ namespace IEXCloudClient
         public IRequest<MetadataResponse> GetMetadataRequest()
         {
             return new MetadataRequest(_baseUrl, _token);
+        }
+
+        public IRequest<CompanyResponse> GetCompanyRequest(string symbol)
+        {
+            return new CompanyRequest(_baseUrl, _token, symbol);
+        }
+
+        public IRequest<Dictionary<string, RequestTypes>> GetCompanyMultiRequest(IEnumerable<string> symbols)
+        {
+            return new CompanyMultiRequest(_baseUrl, _token, symbols);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace IEXCloudClient.Dividends
 {
     internal class DividendRequest : BaseRequest<List<DividendResponse>>
     {
-        public DividendRequest(string symbol, Range range, string baseUrl, string token) : base(baseUrl, token)
+        public DividendRequest(string symbol, DateRangeEnum range, string baseUrl, string token) : base(baseUrl, token)
         {
             SetEndpoint("stock", symbol, "dividends", range.GetDescription());
         }

@@ -1,4 +1,5 @@
 ﻿using IEXCloudClient.Chart;
+using IEXCloudClient.Company;
 using IEXCloudClient.Dividends;
 using IEXCloudClient.KeyStats;
 using IEXCloudClient.Quote;
@@ -12,5 +13,6 @@ namespace IEXCloudClient.Common
         public KeyStatsResponse stats { get; set; }
         public List<DividendResponse> dividends { get; set; }
         public QuoteResponse quote { get; set; }
+        public CompanyResponse company { get; set; }
     }
 }

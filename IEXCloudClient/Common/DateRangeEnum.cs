@@ -2,30 +2,30 @@
 
 namespace IEXCloudClient.Common
 {
-    public enum Range
+    public enum DateRangeEnum
     {
         [Description("5y")]
-        FiveYear,
+        FiveYear = 1825,
 
         [Description("3y")]
-        TwoYear,
+        TwoYear = 730,
 
         [Description("1y")]
-        OneYear,
+        OneYear = 365,
 
         [Description("ytd")]
-        YearToDate,
+        YearToDate = 0,
 
         [Description("6m")]
-        SixMonth,
+        SixMonth = 180,
 
         [Description("3m")]
-        ThreeMonth,
+        ThreeMonth = 90,
 
         [Description("1m")]
-        OneMonth,
+        OneMonth = 30,
 
         [Description("1d")]
-        OneDay
+        OneDay = 1
     }
 }
