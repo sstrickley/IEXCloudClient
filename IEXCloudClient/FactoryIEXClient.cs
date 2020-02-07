@@ -6,6 +6,7 @@ using IEXCloudClient.Company;
 using IEXCloudClient.Dividends;
 using IEXCloudClient.Indicator;
 using IEXCloudClient.KeyStats;
+using IEXCloudClient.News;
 using IEXCloudClient.Quote;
 using System.Collections.Generic;
 
@@ -111,6 +112,16 @@ namespace IEXCloudClient
         public IRequest<Dictionary<string, RequestTypes>> GetCompanyMultiRequest(IEnumerable<string> symbols)
         {
             return new CompanyMultiRequest(_baseUrl, _token, symbols);
+        }
+
+        public IRequest<List<NewsResponse>> GetNewsRequest(string symbol, uint articles = 10)
+        {
+            return new NewsRequest(_baseUrl, _token, symbol, articles);
+        }
+
+        public IRequest<Dictionary<string, RequestTypes>> GetNewsMultiRequest(IEnumerable<string> symbols, uint articles = 10)
+        {
+            return new NewsMultiRequest(_baseUrl, _token, symbols, articles);
         }
     }
 }

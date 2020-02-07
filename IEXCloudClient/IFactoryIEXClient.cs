@@ -6,6 +6,7 @@ using IEXCloudClient.Company;
 using IEXCloudClient.Dividends;
 using IEXCloudClient.Indicator;
 using IEXCloudClient.KeyStats;
+using IEXCloudClient.News;
 using IEXCloudClient.Quote;
 using System.Collections.Generic;
 
@@ -30,5 +31,7 @@ namespace IEXCloudClient
         IRequest<MetadataResponse> GetMetadataRequest();
         IRequest<CompanyResponse> GetCompanyRequest(string symbol);
         IRequest<Dictionary<string, RequestTypes>> GetCompanyMultiRequest(IEnumerable<string> symbols);
+        IRequest<List<NewsResponse>> GetNewsRequest(string symbol, uint articles = 10);
+        IRequest<Dictionary<string, RequestTypes>> GetNewsMultiRequest(IEnumerable<string> symbols, uint articles = 10);
     }
 }
